@@ -1,0 +1,287 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.headerSection {
+  margin-bottom: 1rem;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.titleSection ion-icon {
+  font-size: 1.1rem;
+}
+
+/* Reports Grid */
+.reportsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.reportCard {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+}
+
+.reportCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.reportIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(143, 168, 154, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.reportIcon ion-icon {
+  font-size: 1.5rem;
+  color: #5a7a6a;
+}
+
+.reportCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.reportCard p {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.reportOptions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.selectSmall {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background: white;
+  color: #4a5568;
+}
+
+.btnGenerate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.75rem;
+  background: #8fa89a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btnGenerate:hover {
+  background: #7a9685;
+}
+
+.btnGenerate ion-icon {
+  font-size: 0.9rem;
+}
+
+/* Generated Section */
+.generatedSection {
+  margin-top: 1rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle ion-icon {
+  font-size: 1.1rem;
+}
+
+.tableCard {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  color: #4a5568;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(143, 168, 154, 0.2);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.875rem 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background: rgba(143, 168, 154, 0.05);
+}
+
+.nombreReporte {
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.tipoBadge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: rgba(143, 168, 154, 0.15);
+  color: #5a7a6a;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.formatoBadge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: rgba(66, 153, 225, 0.15);
+  color: #3182ce;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Estado */
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.estado.listo {
+  background: rgba(72, 187, 120, 0.15);
+  color: #38a169;
+}
+
+.estado.procesando {
+  background: rgba(237, 137, 54, 0.15);
+  color: #dd6b20;
+}
+
+.estado ion-icon {
+  font-size: 0.9rem;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.btnIcon,
+.btnIconDanger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnIcon {
+  background: rgba(143, 168, 154, 0.15);
+  color: #5a7a6a;
+}
+
+.btnIcon:hover {
+  background: rgba(143, 168, 154, 0.25);
+}
+
+.btnIconDanger {
+  background: rgba(245, 101, 101, 0.15);
+  color: #e53e3e;
+}
+
+.btnIconDanger:hover {
+  background: rgba(245, 101, 101, 0.25);
+}
+
+.btnIcon ion-icon,
+.btnIconDanger ion-icon {
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .reportsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .reportsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .reportOptions {
+    flex-direction: column;
+  }
+  
+  .btnGenerate {
+    width: 100%;
+  }
+}

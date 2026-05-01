@@ -1,0 +1,159 @@
+/* Layout Principal */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #d4ddd6;
+}
+
+/* Sidebar Lateral */
+.sidebar {
+  width: 70px;
+  background: #8fa89a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+}
+
+.sidebarHeader {
+  margin-bottom: 2rem;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebarHeader ion-icon {
+  font-size: 1.8rem;
+  color: white;
+  padding: 0.5rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.8rem 0.5rem;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-size: 0.65rem;
+}
+
+.navItem:hover {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+.navItemActive {
+  background: rgba(255,255,255,0.25) !important;
+  color: white !important;
+  box-shadow: inset 3px 0 0 white;
+}
+
+.navItem ion-icon {
+  font-size: 1.3rem;
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  padding: 1rem;
+}
+
+.sidebarFooter ion-icon {
+  font-size: 1.4rem;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+}
+
+.sidebarFooter ion-icon:hover {
+  color: white;
+}
+
+/* Contenedor Principal */
+.mainContent {
+  flex: 1;
+  margin-left: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Top */
+.topHeader {
+  background: #a8c4b0;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topLeft,
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.settingsLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.settingsIcon {
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.adminLabel {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Contenido de Página */
+.pageContent {
+  flex: 1;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Responsive header */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+  
+  .mainContent {
+    margin-left: 60px;
+  }
+  
+  .navItem span {
+    display: none;
+  }
+  
+  .pageContent {
+    padding: 0.75rem;
+  }
+}

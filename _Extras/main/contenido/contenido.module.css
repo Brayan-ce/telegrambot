@@ -1,0 +1,613 @@
+.loading, .error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 1rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.error {
+  color: #e53e3e;
+}
+
+/* Layout Dashboard 3 Columnas */
+.dashboard {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr) 340px;
+  gap: 0.75rem;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard,
+.dashboard *,
+.searchBox input,
+.table,
+.table *,
+.card,
+.card * {
+  box-sizing: border-box;
+}
+
+/* Cards base */
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #4a5568;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.cardHeader ion-icon {
+  font-size: 1rem;
+  color: #5a7a6a;
+}
+
+/* ===== COLUMNA IZQUIERDA ===== */
+
+/* Perfil */
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar ion-icon {
+  font-size: 3.5rem;
+  color: #8fa89a;
+}
+
+.perfilInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.perfilNombre {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.perfilId {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+/* Avatar con imagen */
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar ion-icon {
+  font-size: 3.5rem;
+  color: #8fa89a;
+}
+
+.userLink {
+  color: #5a7a6a;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+.userLink:hover { text-decoration: underline; }
+
+.perfilAdmin {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #8fa89a;
+  background: rgba(143, 168, 154, 0.15);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+  display: inline-block;
+  text-decoration: none;
+}
+.perfilAdmin:hover { background: rgba(143,168,154,0.3); }
+
+/* Añadir créditos inline */
+.addCreditos {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.addCreditos input {
+  width: 42px;
+  padding: 0.25rem 0.3rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  text-align: center;
+}
+.addCreditos input:focus { outline: none; border-color: #8fa89a; }
+
+/* Tabla Créditos */
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  background: white;
+}
+
+.searchBox ion-icon {
+  font-size: 1rem;
+  color: #a0aec0;
+  flex-shrink: 0;
+}
+
+.searchBox input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  background: transparent;
+  min-width: 0;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.75rem;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table td,
+.table th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table th {
+  text-align: left;
+  color: #718096;
+  font-weight: 600;
+  padding: 0.5rem 0.3rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.table td {
+  padding: 0.5rem 0.3rem;
+  color: #4a5568;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.table td.small {
+  font-size: 0.7rem;
+  color: #a0aec0;
+}
+
+.btnSmall {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.65rem;
+  background: rgba(143, 168, 154, 0.2);
+  color: #5a7a6a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btnSmall ion-icon {
+  font-size: 0.9rem;
+}
+
+.tableFooter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.tableFooter select {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+/* ===== COLUMNA CENTRO ===== */
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle ion-icon {
+  font-size: 1.1rem;
+}
+
+/* KPIs */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.kpiCard {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.kpiIcon {
+  width: 36px;
+  height: 36px;
+  background: rgba(143, 168, 154, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+}
+
+.kpiIcon ion-icon {
+  font-size: 1.2rem;
+  color: #5a7a6a;
+}
+
+.kpiLabel {
+  font-size: 0.7rem;
+  color: #718096;
+  margin-bottom: 0.2rem;
+}
+
+.kpiValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.2rem;
+}
+
+.kpiSub {
+  font-size: 0.7rem;
+  color: #a0aec0;
+  margin-bottom: 0.4rem;
+}
+
+.kpiTrend {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  color: #e53e3e;
+}
+
+.kpiTrend ion-icon {
+  font-size: 0.85rem;
+}
+
+/* Paneles inferiores */
+.bottomSection {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 0.75rem;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.panelHeader ion-icon {
+  font-size: 1rem;
+  color: #5a7a6a;
+}
+
+.panelSelect {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  color: #718096;
+}
+
+.panelSelect select {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.3rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+.chartPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  color: #a0aec0;
+  font-size: 0.8rem;
+}
+
+.chartPlaceholder ion-icon {
+  font-size: 3rem;
+  color: #8fa89a;
+  margin-bottom: 0.5rem;
+}
+
+.chartLegend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+}
+
+.chartLegend span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.chartLegend ion-icon {
+  font-size: 0.6rem;
+  margin: 0;
+}
+
+/* Ranking */
+.rankingList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.rankingItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.rankAvatar ion-icon {
+  font-size: 1.8rem;
+  color: #8fa89a;
+}
+
+.rankInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.rankName {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.rankBar {
+  height: 5px;
+  background: rgba(143, 168, 154, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.rankFill {
+  height: 100%;
+  background: #8fa89a;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.rankDetail {
+  font-size: 0.65rem;
+  color: #a0aec0;
+}
+
+.rankValue {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2d3748;
+  min-width: 20px;
+  text-align: right;
+}
+
+/* ===== COLUMNA DERECHA ===== */
+
+.tableHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.tableHeader select {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+.rightColumn .table th,
+.rightColumn .table td {
+  font-size: 0.7rem;
+  padding: 0.4rem 0.15rem;
+}
+
+.rightColumn .table td ion-icon {
+  font-size: 1rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .dashboard {
+    grid-template-columns: 220px minmax(0, 1fr) 300px;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .dashboard {
+    grid-template-columns: 200px 1fr;
+  }
+  
+  .rightColumn {
+    grid-column: 1 / -1;
+  }
+  
+  .rightColumn .table {
+    font-size: 0.75rem;
+  }
+}
+
+/* Stats list */
+.statsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.statsItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #4a5568;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.statsItem:last-child { border-bottom: none; }
+.statsItem ion-icon { font-size: 1rem; color: #8fa89a; flex-shrink: 0; }
+.statsItem span { flex: 1; }
+.statsItem strong { font-weight: 700; color: #2d3748; }
+
+/* Estado badge descargas */
+.estadoBadge { display: inline-flex; align-items: center; }
+.estadoBadge.exitoso ion-icon { color: #38a169; font-size: 1rem; }
+.estadoBadge.fallido ion-icon { color: #e53e3e; font-size: 1rem; }
+.estadoBadge.pendiente ion-icon { color: #d69e2e; font-size: 1rem; }
+
+/* Ranking mejorado */
+.rankPos {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(143,168,154,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #5a7a6a;
+  flex-shrink: 0;
+}
+
+.rankTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+/* Filename truncado */
+.filename {
+  font-size: 0.7rem;
+  color: #718096;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Ver todo link */
+.verTodo {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5a7a6a;
+  text-decoration: none;
+  margin-top: 0.75rem;
+}
+.verTodo:hover { color: #2d3748; }
+.verTodo ion-icon { font-size: 0.9rem; }
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .leftColumn,
+  .centerColumn,
+  .rightColumn {
+    grid-column: 1;
+  }
+  
+  .kpiGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bottomSection {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    padding: 0.875rem;
+  }
+  
+  .perfil {
+    flex-direction: column;
+    text-align: center;
+  }
+}

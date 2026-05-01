@@ -1,0 +1,628 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.titleSection ion-icon {
+  font-size: 1.1rem;
+}
+
+.btnPrimary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: #8fa89a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnPrimary:hover {
+  background: #7a9685;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(143, 168, 154, 0.3);
+}
+
+/* KPIs */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.kpiCard {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.kpiIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(143, 168, 154, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.kpiIcon ion-icon {
+  font-size: 1.4rem;
+  color: #5a7a6a;
+}
+
+.kpiLabel {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-bottom: 0.25rem;
+}
+
+.kpiValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+/* Two Column Layout */
+.twoColumn {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.mainColumn,
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4a5568;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cardHeader ion-icon {
+  font-size: 1rem;
+  margin-right: 0.25rem;
+}
+
+.selectSmall {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background: white;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+/* Tickets List */
+.ticketsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ticketItem {
+  padding: 1rem;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 10px;
+  background: white;
+  transition: all 0.2s;
+}
+
+.ticketItem:hover {
+  border-color: rgba(143, 168, 154, 0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.ticketHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.ticketInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ticketId {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #8fa89a;
+}
+
+.prioridad {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.prioridad.alta {
+  background: rgba(245, 101, 101, 0.15);
+  color: #e53e3e;
+}
+
+.prioridad.media {
+  background: rgba(237, 137, 54, 0.15);
+  color: #dd6b20;
+}
+
+.prioridad.baja {
+  background: rgba(72, 187, 120, 0.15);
+  color: #38a169;
+}
+
+.estado {
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.estado.abierto {
+  background: rgba(245, 101, 101, 0.15);
+  color: #e53e3e;
+}
+
+.estado.proceso {
+  background: rgba(66, 153, 225, 0.15);
+  color: #3182ce;
+}
+
+.estado.resuelto {
+  background: rgba(72, 187, 120, 0.15);
+  color: #38a169;
+}
+
+.ticketAsunto {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.ticketMeta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ticketMeta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.ticketMeta ion-icon {
+  font-size: 0.9rem;
+}
+
+.ticketActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnSmall {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.75rem;
+  background: rgba(143, 168, 154, 0.15);
+  color: #5a7a6a;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnSmall:hover {
+  background: rgba(143, 168, 154, 0.25);
+}
+
+.btnSmall ion-icon {
+  font-size: 0.9rem;
+}
+
+/* FAQs */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faqItem {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.faqQuestion ion-icon {
+  font-size: 1.2rem;
+  color: #8fa89a;
+  flex-shrink: 0;
+}
+
+.faqAnswer {
+  font-size: 0.85rem;
+  color: #718096;
+  line-height: 1.5;
+  padding-left: 1.7rem;
+}
+
+.btnLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: transparent;
+  color: #8fa89a;
+  border: 1px solid rgba(143, 168, 154, 0.3);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.btnLink:hover {
+  background: rgba(143, 168, 154, 0.1);
+}
+
+.btnLink ion-icon {
+  font-size: 0.9rem;
+}
+
+/* Contact */
+.contactOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contactIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(143, 168, 154, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactIcon ion-icon {
+  font-size: 1.2rem;
+  color: #8fa89a;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactLabel {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.contactValue {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.btnPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 0.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  background: white;
+  color: #4a5568;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnPage:hover:not(:disabled) {
+  background: rgba(143, 168, 154, 0.1);
+  border-color: #8fa89a;
+}
+
+.btnPage.active {
+  background: #8fa89a;
+  color: white;
+  border-color: #8fa89a;
+}
+
+.btnPage:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPage ion-icon {
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerSection {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .btnPrimary {
+    justify-content: center;
+  }
+  
+  .kpiGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ticketMeta {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}
+
+/* ── Navegación ── */
+.breadcrumb { display: flex; align-items: center; }
+.breadcrumbLink {
+  display: flex; align-items: center; gap: 0.4rem;
+  color: #5a7a6a; font-size: 0.875rem; font-weight: 600;
+  text-decoration: none; transition: color 0.2s;
+}
+.breadcrumbLink:hover { color: #2d3748; }
+
+.headerActions { display: flex; gap: 0.5rem; }
+
+.btnOutline {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  background: white; color: #4a5568;
+  border: 1.5px solid rgba(0,0,0,0.1); border-radius: 9px;
+  font-size: 0.82rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; transition: all 0.2s;
+}
+.btnOutline:hover { border-color: #8fa89a; color: #5a7a6a; }
+
+.btnDanger {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  background: rgba(229,62,62,0.08); color: #c53030;
+  border: 1.5px solid rgba(229,62,62,0.2); border-radius: 9px;
+  font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.btnDanger:hover { background: rgba(229,62,62,0.15); }
+
+.btnSmallOutline {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.35rem 0.75rem;
+  background: white; color: #4a5568;
+  border: 1.5px solid rgba(0,0,0,0.1); border-radius: 7px;
+  font-size: 0.78rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; transition: all 0.2s;
+}
+.btnSmallOutline:hover { border-color: #8fa89a; color: #5a7a6a; }
+
+/* ── Form wrapper ── */
+.formWrapper {
+  max-width: 700px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+.formHeader {
+  display: flex; align-items: center; gap: 1rem;
+  background: rgba(255,255,255,0.75);
+  border-radius: 14px; padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-left: 4px solid #8fa89a;
+}
+.formHeaderIcon {
+  width: 52px; height: 52px;
+  background: rgba(143,168,154,0.2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.formHeaderIcon ion-icon { font-size: 1.75rem; color: #5a7a6a; }
+.formTitle { font-size: 1.3rem; font-weight: 700; color: #2d3748; margin: 0; }
+.formSubtitle { font-size: 0.85rem; color: #718096; margin: 0.15rem 0 0; }
+
+.form { display: flex; flex-direction: column; gap: 1rem; }
+.formSection {
+  background: rgba(255,255,255,0.75);
+  border-radius: 14px; padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.sectionLabel {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.78rem; font-weight: 700; color: #5a7a6a;
+  text-transform: uppercase; letter-spacing: 0.6px;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(143,168,154,0.2);
+}
+.sectionLabel ion-icon { font-size: 1rem; }
+.formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.formGroup { display: flex; flex-direction: column; gap: 0.4rem; }
+.formGroup label { font-size: 0.82rem; font-weight: 600; color: #4a5568; }
+.formGroup input, .formGroup select, .formGroup textarea {
+  padding: 0.7rem 0.875rem;
+  border: 1.5px solid rgba(0,0,0,0.08); border-radius: 9px;
+  font-size: 0.9rem; background: #fafafa; color: #2d3748;
+  box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%; font-family: inherit;
+}
+.formGroup input:focus, .formGroup select:focus, .formGroup textarea:focus {
+  outline: none; border-color: #8fa89a; background: #fff;
+  box-shadow: 0 0 0 3px rgba(143,168,154,0.15);
+}
+.formGroup textarea { resize: vertical; }
+.formActions {
+  display: flex; justify-content: flex-end; align-items: center;
+  gap: 0.75rem; padding-top: 0.5rem;
+}
+
+.required { color: #e53e3e; }
+.errorBanner {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(245,101,101,0.1);
+  border: 1px solid rgba(245,101,101,0.3);
+  border-radius: 10px; color: #c53030; font-size: 0.875rem; font-weight: 500;
+}
+.success { background: #38a169 !important; box-shadow: 0 4px 12px rgba(56,161,105,0.3) !important; }
+
+/* ── Ver ticket layout ── */
+.verLayout {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 1rem; align-items: start;
+}
+.verSidebar { display: flex; flex-direction: column; gap: 1rem; }
+.verContent { display: flex; flex-direction: column; gap: 1rem; }
+.verCard {
+  background: rgba(255,255,255,0.8);
+  border-radius: 14px; padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.verLoading, .verError {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 2rem; font-size: 0.95rem; color: #718096;
+}
+.verError { color: #e53e3e; }
+.verActividadHeader {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-bottom: 1rem; padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.verActividadHeader ion-icon { font-size: 1.1rem; color: #8fa89a; }
+.verActividadHeader h3 { font-size: 0.95rem; font-weight: 700; color: #4a5568; margin: 0; }
+.verMetaList { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.06); }
+.verMetaItem { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: #4a5568; }
+.verMetaItem ion-icon { font-size: 1rem; color: #8fa89a; flex-shrink: 0; }
+.verMetaItem strong { color: #2d3748; }
+
+.ticketCodigo { font-size: 0.8rem; font-weight: 700; color: #8fa89a; letter-spacing: 0.5px; }
+.ticketBadges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.25rem 0; }
+.estadoBadge, .prioridadBadge {
+  padding: 0.25rem 0.75rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; text-transform: capitalize;
+}
+.ticketDescripcion { font-size: 0.9rem; color: #4a5568; line-height: 1.6; margin: 0; }
+
+.estadoBtns { display: flex; flex-direction: column; gap: 0.5rem; }
+.btnEstado {
+  padding: 0.55rem 1rem; border-radius: 8px;
+  border: 1.5px solid rgba(0,0,0,0.1); background: white;
+  color: #4a5568; font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; text-transform: capitalize; transition: all 0.2s;
+}
+.btnEstado:hover:not(:disabled) { border-color: #8fa89a; background: #f7faf9; }
+.btnEstado:disabled { cursor: not-allowed; }
+
+@media (max-width: 768px) {
+  .verLayout { grid-template-columns: 1fr; }
+  .formGrid { grid-template-columns: 1fr; }
+}

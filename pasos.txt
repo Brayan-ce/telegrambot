@@ -1,0 +1,55 @@
+Crear el bot en Telegram
+Paso 1 — Crear el bot con BotFather
+Abre Telegram → busca @BotFather
+Escribe /newbot
+Te pide el nombre del bot (ej: Freepik Downloader)
+Te pide el username (debe terminar en bot, ej: freepik_dl_bot)
+BotFather te responde con tu token:
+Done! Use this token to access the HTTP API:
+7123456789:AAFxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Cópialo.
+
+Paso 2 — Guardarlo en el proyecto
+Abre tu .env.local y agrega:
+
+TELEGRAM_BOT_TOKEN=7123456789:AAFxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Paso 3 — Verificar que se conecta
+Puedes probar en el navegador pegando esta URL (con tu token real):
+
+https://api.telegram.org/bot<TU_TOKEN>/getMe
+Si responde algo como:
+
+json
+{"ok":true,"result":{"id":7123456789,"is_bot":true,"first_name":"Freepik Downloader",...}}
+El bot está activo y el token es correcto.
+
+Cómo funciona el flujo hacia tu BD
+Usuario en Telegram
+       ↓
+   Escribe /start o envía URL
+       ↓
+   Telegram → POST → tu servidor (webhook) o tu bot lo lee por polling
+       ↓
+   bot/index.js procesa el mensaje
+       ↓
+   Consulta/inserta en MySQL (tabla usuarios, descargas, etc.)
+       ↓
+   Responde al usuario en Telegram
+Tienes dos opciones para recibir mensajes:
+
+Polling — el bot pregunta a Telegram cada X segundos si hay mensajes nuevos. Fácil para desarrollo local.
+Webhook — Telegram envía los mensajes a tu servidor directamente. Necesita HTTPS. Para producción en VPS.
+Lo que necesitarías en el bot para poblar la BD
+Evento	Tabla afectada	Qué guarda
+Usuario escribe /start	usuarios	telegram_id, username, first_name, last_name, chat_id
+Usuario envía URL de Freepik	descargas	usuario_id, url_solicitada, estado, creditos_usados
+Descarga exitosa	descargas	actualiza estado='exitoso', nombre_archivo, tipo, tamano_mb
+Descarga fallida	descargas	actualiza estado='fallido', mensaje_error
+Admin añade créditos	recargas + usuarios	creditos_antes, creditos_despues, metodo
+Cuando tengas el token dime y creamos el bot/index.js con polling + conexión a MySQL para que puedas ir probando que los datos llegan al dashboard.
+
+Feedback submitted
+
+
+
+

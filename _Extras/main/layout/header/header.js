@@ -6,6 +6,7 @@ import styles from './header.module.css';
 
 const navItems = [
   { href: '/dashboard', icon: 'grid-outline', label: 'Dashboard' },
+  { href: '/control-precio', icon: 'pricetag-outline', label: 'Control' },
   { href: '/usuarios', icon: 'people-outline', label: 'Usuarios' },
   { href: '/historial', icon: 'time-outline', label: 'Historial' },
   { href: '/reportes', icon: 'document-text-outline', label: 'Reportes' },

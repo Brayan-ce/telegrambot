@@ -69,6 +69,58 @@ const CREDITOS_POR_DESCARGA = 5;
 const PLANES_IMG = path.join(process.cwd(), 'public', 'planes.jpg');
 const md = (extra = {}) => ({ parse_mode: 'Markdown', ...extra });
 
+const ayudaTexto = () =>
+  `ℹ️ *Ayuda*\n\n` +
+  `Envía una URL de Freepik y recibirás el archivo.\n\n` +
+  `*Comandos:*\n` +
+  `/start — Inicio\n` +
+  `/descargar — Ir a descargar\n` +
+  `/creditos — Ver tu saldo\n` +
+  `/micuenta — Ver tu cuenta\n` +
+  `/historial — Tus movimientos\n` +
+  `/topcreditos — Ranking global\n` +
+  `/estado — Ver tus estadísticas\n` +
+  `/ayuda — Esta ayuda\n\n` +
+  `*Botones del menú:*\n` +
+  `🎨 Descargar — Cómo usar\n` +
+  `💰 Créditos — Ver planes\n` +
+  `📊 Mi Cuenta — Tus estadísticas\n\n` +
+  `*Costo:* ${CREDITOS_POR_DESCARGA} créditos por descarga\n\n` +
+  `Para recargar contacta al administrador.`;
+
+async function enviarInicio(chatId, nombre, creditos) {
+  return bot.sendMessage(chatId,
+    `👋 *¡Hola ${nombre}!*\n\n` +
+    `🎨 *Bot Descargador de Freepik*\n\n` +
+    `💛 *Créditos:* ${creditos}\n\n` +
+    `📌 *¿Cómo usar?*\n` +
+    `1️⃣ Copia un link de Freepik\n` +
+    `2️⃣ Pégalo aquí\n` +
+    `3️⃣ ¡Recibe tu archivo!\n\n` +
+    `💡 Cada descarga usa *${CREDITOS_POR_DESCARGA}* créditos\n\n` +
+    `━━━━━━━━━━━━━━━━━━━━\n` +
+    `📋 *Comandos disponibles:*\n` +
+    `/descargar — Ir a descargar\n` +
+    `/creditos — Ver tu saldo\n` +
+    `/estado — Ver tus estadísticas\n` +
+    `/micuenta — Ver tu cuenta\n` +
+    `/historial — Tus movimientos\n` +
+    `/topcreditos — Ranking global\n` +
+    `/ayuda — Ver ayuda`,
+    {
+      parse_mode: 'Markdown',
+      reply_markup: {
+        keyboard: [
+          ['🎨 Descargar', '💰 Créditos'],
+          ['📊 Mi Cuenta', 'ℹ️ Ayuda'],
+        ],
+        resize_keyboard: true,
+        persistent: true,
+      },
+    }
+  );
+}
+
 // ── Teclados ──────────────────────────────────────────────────
 const KB_MAIN = {
   reply_markup: {
@@ -114,33 +166,7 @@ bot.onText(/\/start/, async (msg) => {
       );
     }
 
-    await bot.sendMessage(msg.chat.id,
-      `👋 *¡Hola ${nombre}!*\n\n` +
-      `🎨 *Bot Descargador de Freepik*\n\n` +
-      `💛 *Créditos:* ${usuario.creditos}\n\n` +
-      `📌 *¿Cómo usar?*\n` +
-      `1️⃣ Copia un link de Freepik\n` +
-      `2️⃣ Pégalo aquí\n` +
-      `3️⃣ ¡Recibe tu archivo!\n\n` +
-      `💡 Cada descarga usa *${CREDITOS_POR_DESCARGA}* créditos\n\n` +
-      `━━━━━━━━━━━━━━━━━━━━\n` +
-      `📋 *Comandos disponibles:*\n` +
-      `/descargar — Ir a descargar\n` +
-      `/creditos — Ver tu saldo\n` +
-      `/estado — Ver tus estadísticas\n` +
-      `/ayuda — Ver ayuda`,
-      {
-        parse_mode: 'Markdown',
-        reply_markup: {
-          keyboard: [
-            ['🎨 Descargar', '💰 Créditos'],
-            ['📊 Mi Cuenta', 'ℹ️ Ayuda'],
-          ],
-          resize_keyboard: true,
-          persistent: true,
-        },
-      }
-    );
+    await enviarInicio(msg.chat.id, nombre, usuario.creditos);
   } catch (err) {
     console.error('/start error:', err.message);
     bot.sendMessage(msg.chat.id, '❌ Error al iniciar. Intenta de nuevo.');
@@ -171,24 +197,33 @@ bot.onText(/\/estado/, async (msg) => {
   } catch (err) { console.error('/estado error:', err.message); }
 });
 
+// ── /micuenta (y /mi cuenta) ────────────────────────────────
+bot.onText(/\/(?:mi\s*cuenta|micuenta)\b/i, async (msg) => {
+  try {
+    const usuario = await obtenerOCrearUsuario(msg);
+    await mostrarCuenta(msg.chat.id, usuario);
+  } catch (err) { console.error('/micuenta error:', err.message); }
+});
+
+// ── /historial ───────────────────────────────────────────────
+bot.onText(/\/historial\b/i, async (msg) => {
+  try {
+    const usuario = await obtenerOCrearUsuario(msg);
+    await mostrarHistorialUsuario(msg.chat.id, usuario);
+  } catch (err) { console.error('/historial error:', err.message); }
+});
+
+// ── /topcreditos o /topusuarios ──────────────────────────────
+bot.onText(/\/(?:topcreditos|topusuarios)\b/i, async (msg) => {
+  try {
+    await mostrarTopCreditos(msg.chat.id);
+  } catch (err) { console.error('/topcreditos error:', err.message); }
+});
+
 // ── /ayuda ────────────────────────────────────────────────────
 bot.onText(/\/ayuda/, async (msg) => {
-  bot.sendMessage(msg.chat.id,
-    `ℹ️ *Ayuda*\n\n` +
-    `Envía una URL de Freepik y recibirás el archivo.\n\n` +
-    `*Comandos:*\n` +
-    `/start — Inicio\n` +
-    `/creditos — Ver tu saldo\n` +
-    `/estado — Ver tus estadísticas\n` +
-    `/ayuda — Esta ayuda\n\n` +
-    `*Botones del menú:*\n` +
-    `🎨 Descargar — Cómo usar\n` +
-    `💰 Créditos — Ver planes\n` +
-    `📊 Mi Cuenta — Tus estadísticas\n\n` +
-    `*Costo:* ${CREDITOS_POR_DESCARGA} créditos por descarga\n\n` +
-    `Para recargar contacta al administrador.`,
-    md()
-  );
+  bot.sendMessage(msg.chat.id, ayudaTexto(), md());
+
 });
 
 const KB_NAV = {
@@ -202,6 +237,14 @@ const KB_NAV = {
         { text: '📊 Mi Estado', callback_data: 'nav_estado' },
         { text: 'ℹ️ Ayuda', callback_data: 'nav_ayuda' },
       ],
+    ],
+  },
+};
+
+const KB_CUENTA = {
+  reply_markup: {
+    inline_keyboard: [
+      [{ text: '⬅️ Volver', callback_data: 'volver_inicio' }],
     ],
   },
 };
@@ -280,6 +323,14 @@ async function mostrarPlanes(chatId) {
 
 // ── Mi Cuenta ─────────────────────────────────────────────────
 async function mostrarCuenta(chatId, usuario) {
+  const [[perfil]] = await pool.query(
+    `SELECT telegram_id, first_name, last_name, username
+     FROM usuarios
+     WHERE id = ?
+     LIMIT 1`,
+    [usuario.id]
+  );
+
   const [[stats]] = await pool.query(
     `SELECT
       COUNT(*) AS total,
@@ -290,20 +341,115 @@ async function mostrarCuenta(chatId, usuario) {
     [usuario.id]
   );
 
+  const [[ventana]] = await pool.query(
+    `SELECT
+      SUM(fecha >= DATE_SUB(NOW(), INTERVAL 1 MINUTE) AND estado = 'exitoso') AS exitosas_minuto,
+      SUM(fecha >= DATE_SUB(NOW(), INTERVAL 1 MINUTE)) AS total_minuto,
+      SUM(fecha >= DATE_SUB(NOW(), INTERVAL 1 HOUR) AND estado = 'exitoso') AS exitosas_hora,
+      SUM(fecha >= DATE_SUB(NOW(), INTERVAL 1 HOUR)) AS total_hora,
+      SUM(DATE(fecha) = CURDATE() AND estado = 'exitoso') AS exitosas_hoy,
+      SUM(DATE(fecha) = CURDATE()) AS total_hoy
+     FROM descargas
+     WHERE usuario_id = ?`,
+    [usuario.id]
+  );
+
+  const nombre = [perfil?.first_name, perfil?.last_name].filter(Boolean).join(' ') || 'Usuario';
+  const total = Number(stats?.total || 0);
+  const minEx = Number(ventana?.exitosas_minuto || 0);
+  const minTot = Number(ventana?.total_minuto || 0);
+  const horaEx = Number(ventana?.exitosas_hora || 0);
+  const horaTot = Number(ventana?.total_hora || 0);
+  const hoyEx = Number(ventana?.exitosas_hoy || 0);
+  const hoyTot = Number(ventana?.total_hoy || 0);
+
   await bot.sendMessage(chatId,
-    `╔═══════════════════════════╗\n` +
-    `║  📊 MI CUENTA  ║\n` +
-    `╚═══════════════════════════╝\n\n` +
-    `💳 *Créditos disponibles:* ${usuario.creditos}\n` +
-    `📥 *Descargas disponibles:* ~${Math.floor(usuario.creditos / CREDITOS_POR_DESCARGA)}\n\n` +
-    `━━━━━━━━━━━━━━━━━━━━\n` +
-    `📈 *HISTORIAL*\n` +
-    `━━━━━━━━━━━━━━━━━━━━\n` +
-    `� Total descargas: *${stats.total}*\n` +
-    `✅ Exitosas: *${stats.exitosas ?? 0}*\n` +
-    `❌ Fallidas: *${stats.fallidas ?? 0}*\n` +
-    `💸 Créditos gastados: *${stats.gastados}*`,
-    { parse_mode: 'Markdown', ...KB_NAV }
+    `👤 *${nombre}*\n` +
+    `🆔 \`${perfil?.telegram_id || '-'}\`\n\n` +
+    `🟢 *CRÉDITOS:* *${usuario.creditos}*\n\n` +
+    `📈 *ESTADÍSTICAS*\n\n` +
+    `📦 Total descargas: *${total}*\n` +
+    `⏱ Último minuto: *${minEx}/${minTot}*\n` +
+    `🕒 Última hora: *${horaEx}/${horaTot}*\n` +
+    `📅 Hoy: *${hoyEx}/${hoyTot}*\n\n` +
+    `💸 Créditos gastados: *${Number(stats?.gastados || 0)}*`,
+    { parse_mode: 'Markdown', ...KB_CUENTA }
+  );
+}
+
+async function mostrarHistorialUsuario(chatId, usuario) {
+  const [rows] = await pool.query(
+    `SELECT delta, tipo, DATE_FORMAT(fecha_raw, '%Y-%m-%d') AS fecha
+     FROM (
+       SELECT r.creditos AS delta, 'admin_add' AS tipo, r.fecha AS fecha_raw
+       FROM recargas r
+       WHERE r.usuario_id = ?
+
+       UNION ALL
+
+       SELECT -d.creditos_usados AS delta, 'usage' AS tipo, d.fecha AS fecha_raw
+       FROM descargas d
+       WHERE d.usuario_id = ? AND d.estado = 'exitoso'
+     ) t
+     ORDER BY fecha_raw DESC
+     LIMIT 12`,
+    [usuario.id, usuario.id]
+  );
+
+  if (!rows.length) {
+    return bot.sendMessage(
+      chatId,
+      `📜 HISTORIAL\n\nAún no tienes movimientos de créditos.`,
+      { ...KB_CUENTA }
+    );
+  }
+
+  const lineas = rows.map((r) => {
+    const delta = Number(r.delta || 0);
+    const signo = delta >= 0 ? '+' : '';
+    return `${signo}${delta} | ${r.tipo} | ${r.fecha}`;
+  });
+
+  return bot.sendMessage(
+    chatId,
+    `📜 HISTORIAL\n\n${lineas.join('\n')}\n\nSaldo actual: ${usuario.creditos}`,
+    { ...KB_CUENTA }
+  );
+}
+
+async function mostrarTopCreditos(chatId) {
+  const [rows] = await pool.query(
+    `SELECT
+      u.id,
+      CONCAT(IFNULL(u.first_name, 'Usuario'), IFNULL(CONCAT(' ', u.last_name), '')) AS nombre,
+      COALESCE(SUM(CASE WHEN r.creditos > 0 THEN r.creditos ELSE 0 END), 0) AS total_creditos
+     FROM usuarios u
+     JOIN recargas r ON r.usuario_id = u.id
+     GROUP BY u.id, u.first_name, u.last_name
+     HAVING total_creditos > 0
+     ORDER BY total_creditos DESC
+     LIMIT 10`
+  );
+
+  if (!rows.length) {
+    return bot.sendMessage(
+      chatId,
+      `🏆 TOP USUARIOS\n\nAún no hay recargas registradas.`,
+      { ...KB_CUENTA }
+    );
+  }
+
+  const podio = ['🥇', '🥈', '🥉'];
+  const lineas = rows.map((r, idx) => {
+    const badge = podio[idx] || `${idx + 1}.`;
+    const nombre = (r.nombre || 'Usuario').trim();
+    return `${badge} ${nombre} | ${Number(r.total_creditos)} créditos`;
+  });
+
+  return bot.sendMessage(
+    chatId,
+    `🏆 TOP USUARIOS\n\n📊 Por créditos adquiridos\n\n${lineas.join('\n')}`,
+    { ...KB_CUENTA }
   );
 }
 
@@ -507,37 +653,22 @@ bot.on('callback_query', async (query) => {
     } catch (e) { console.error('nav_estado error:', e.message); }
   }
   if (data === 'nav_ayuda') {
-    return bot.sendMessage(chatId,
-      `ℹ️ *Ayuda*\n\n` +
-      `Envía una URL de Freepik y recibirás el archivo.\n\n` +
-      `*Botones:*\n` +
-      `🎨 Descargar — Cómo usar\n` +
-      `💰 Créditos — Ver planes\n` +
-      `📊 Estado — Tus estadísticas\n\n` +
-      `*Costo:* ${CREDITOS_POR_DESCARGA} créditos por descarga\n\n` +
-      `Para recargar contacta al administrador.`,
-      { parse_mode: 'Markdown', ...KB_NAV }
-    );
+    return bot.sendMessage(chatId, ayudaTexto(), { parse_mode: 'Markdown', ...KB_NAV });
   }
 
   if (data === 'volver_inicio') {
     try {
       const usuario = await obtenerOCrearUsuario(query.message);
       const nombre = query.from.first_name;
-      bot.sendMessage(chatId,
-        `👋 *¡Hola ${nombre}!*\n\n💛 *Créditos:* ${usuario.creditos}\n\nEnvíame una URL de Freepik.`,
-        {
-          parse_mode: 'Markdown',
-          reply_markup: {
-            keyboard: [
-              ['🎨 Descargar', '💰 Créditos'],
-              ['📊 Mi Cuenta', 'ℹ️ Ayuda'],
-            ],
-            resize_keyboard: true,
-            persistent: true,
-          },
-        }
-      );
+      return enviarInicio(chatId, nombre, usuario.creditos);
+    } catch (e) { console.error('volver_inicio error:', e.message); }
+  }
+
+  if (data === 'regresar_inicio_total') {
+    try {
+      const usuario = await obtenerOCrearUsuario(query.message);
+      const nombre = query.from.first_name;
+      return enviarInicio(chatId, nombre, usuario.creditos);
     } catch (e) { console.error('volver_inicio error:', e.message); }
   }
 });

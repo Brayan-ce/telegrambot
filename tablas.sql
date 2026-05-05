@@ -124,11 +124,52 @@ CREATE TABLE IF NOT EXISTS reportes (
 );
 
 -- ============================================================
+-- TABLA: control_precio_config
+-- Configuración activa de costos del proveedor
+-- ============================================================
+CREATE TABLE IF NOT EXISTS control_precio_config (
+  id                    TINYINT PRIMARY KEY,
+  costo_por_descarga_usd DECIMAL(10,3) NOT NULL DEFAULT 0.025,
+  tipo_cambio           DECIMAL(10,3) NOT NULL DEFAULT 3.760,
+  costo_api_usd         DECIMAL(10,3) NOT NULL DEFAULT 0.094,
+  aplica_desde          DATETIME DEFAULT CURRENT_TIMESTAMP,
+  estado                ENUM('activo','inactivo') DEFAULT 'activo',
+  recomendacion         TEXT,
+  actualizado_por       INT,
+  actualizado_en        DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (actualizado_por) REFERENCES admins(id) ON DELETE SET NULL
+);
+
+-- ============================================================
+-- TABLA: control_precio_historial
+-- Historial de cambios de precio API y tipo de cambio
+-- ============================================================
+CREATE TABLE IF NOT EXISTS control_precio_historial (
+  id                         INT AUTO_INCREMENT PRIMARY KEY,
+  admin_id                   INT,
+  costo_por_descarga_antes   DECIMAL(10,3),
+  costo_por_descarga_despues DECIMAL(10,3) NOT NULL,
+  tipo_cambio_antes          DECIMAL(10,3),
+  tipo_cambio_despues        DECIMAL(10,3) NOT NULL,
+  costo_api_usd_antes        DECIMAL(10,3),
+  costo_api_usd_despues      DECIMAL(10,3) NOT NULL,
+  costo_api_pen_antes        DECIMAL(10,3),
+  costo_api_pen_despues      DECIMAL(10,3) NOT NULL,
+  aplica_desde               DATETIME,
+  motivo                     VARCHAR(300),
+  creado_en                  DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE SET NULL
+);
+
+-- ============================================================
 -- DATOS INICIALES: Admin por defecto
 -- Password: admin123 (cambiar en producción)
 -- ============================================================
 INSERT INTO admins (nombre, email, password_hash) VALUES
 ('Camilo Admin', 'admin@miapp.com', '$2b$10$EJEMPLO_HASH_CAMBIAR_EN_PRODUCCION');
+
+INSERT INTO control_precio_config (id, recomendacion) VALUES
+(1, 'Guarda este valor como costo API y ajusta tasa cuando cambie el proveedor.');
 
 -- ============================================================
 -- INDICES para mejor rendimiento en consultas frecuentes
@@ -141,3 +182,4 @@ CREATE INDEX idx_usuarios_estado ON usuarios(estado);
 CREATE INDEX idx_recargas_usuario ON recargas(usuario_id);
 CREATE INDEX idx_tickets_estado ON tickets(estado);
 CREATE INDEX idx_tickets_usuario ON tickets(usuario_id);
+CREATE INDEX idx_control_precio_historial_fecha ON control_precio_historial(creado_en);
